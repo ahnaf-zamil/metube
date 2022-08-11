@@ -1,0 +1,10 @@
+flask
+flask-sqlalchemy
+flask-inputs
+flask-migrate
+psycopg2-binary
+python-dotenv
+flask-cors
+minio
+jsonschema
+pika
