@@ -1,5 +1,7 @@
 # MeTube
-A backend system inspired by YouTube’s upload flow. It allows users to upload videos (chunked) through a REST API, which are then processed by distributed encoder workers. The video encoding process involves generating multiple video qualities using FFMPEG, with storage handled by S3/MinIO and message dispatching done via RabbitMQ.
+A backend system inspired by YouTube’s upload flow. It allows users to upload videos through a REST API, which are then processed by distributed encoder workers. 
+
+The video encoding process involves generating multiple video qualities using FFMPEG, with storage handled by S3/MinIO and task distribution done through RabbitMQ.
 
 ## Requirements
 1. Python (for REST API)
@@ -38,7 +40,7 @@ cp .env.example .env
 
 Make sure you have `yarn` and Node.js installed.
 
-```
+```bash
 cd web
 yarn # to install dependencies
 yarn start # start the react server
