@@ -8,13 +8,12 @@ assert(build_machine.cpu_family() == 'x86_64', 'You need a 64-bit processor to b
 
 vendor_incdir = include_directories('include')
 src_incdir = include_directories('src')
-ffmpeg_incdir = include_directories('/usr/include/ffmpeg/')
 
 # Dependencies
 libdir = meson.current_source_dir() + '/lib'
 
 deps = [
-    compiler.find_library('avformat'), # FFMPEG AV Format
+    dependency('libavformat', method: 'pkg-config'), # FFMPEG AV Format
     compiler.find_library('amqpcpp', dirs: libdir), # AMQP-CPP
     compiler.find_library('event', dirs: libdir), # LibEvent,
     compiler.find_library('miniocpp', dirs: libdir), # Minio SDK
@@ -31,6 +30,6 @@ deps = [
 executable(
     'encoder', 
     sources: files('src/main.cpp', 'src/worker.cpp', 'src/encoder.cpp', 'src/consumer.cpp'), 
-    include_directories: [vendor_incdir, src_incdir, ffmpeg_incdir], 
+    include_directories: [vendor_incdir, src_incdir], 
     dependencies: deps
 )
